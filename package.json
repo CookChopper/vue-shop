@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "babel-plugin-component": "^1.1.1",
     "core-js": "^3.6.5",
+    "css-loader": "^5.2.6",
     "element-ui": "^2.15.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
@@ -27,8 +29,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
-    "less": "^3.0.4",
-    "less-loader": "^5.0.0",
+    "less": "^3.13.1",
+    "less-loader": "^4.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
