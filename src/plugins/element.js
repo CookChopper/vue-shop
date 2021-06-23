@@ -10,7 +10,11 @@ import {
   Aside,
   Main,
   Header,
-  MessageBox
+  MessageBox,
+  Menu,
+  MenuItem,
+  Submenu,
+  MenuItemGroup
 } from 'element-ui'
 
 Vue.use(Form)
@@ -22,5 +26,9 @@ Vue.use(Container)
 Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(Submenu)
+Vue.use(MenuItemGroup)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
