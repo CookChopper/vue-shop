@@ -21,7 +21,8 @@
                    active-text-color="#409EEF"
                    router
                    :collapse="isCollapse"
-                   :collapse-transition="false">
+                   :collapse-transition="false"
+                   unique-opened>
             <el-submenu :index="item.path"
                         v-for="item in menulist"
                         :key="item.id">
@@ -69,7 +70,7 @@ export default {
   methods: {
     // 退出
     async logout () {
-      const confirmResult = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      const confirmResult = await this.$confirm('确定退出登录?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -84,7 +85,6 @@ export default {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) return this.$message.error('获取左边菜单栏数据失败')
       this.menulist = res.data
-      console.log(res.data)
     },
     // 设置默认左侧菜单栏激活
     showActive (item) {
@@ -123,6 +123,9 @@ export default {
 .el-aside {
   background-color: #333744;
   height: 100%;
+  .el-menu-item {
+    font-size: 12px;
+  }
 }
 .el-main {
   background-color: #eaedf1;
