@@ -117,19 +117,19 @@ export default {
   }
 }
 .el-container {
-  height: 100%;
+  min-height: 100%;
 }
 
 .el-aside {
   background-color: #333744;
-  height: 100%;
+  min-height: 100%;
   .el-menu-item {
     font-size: 12px;
   }
 }
 .el-main {
   background-color: #eaedf1;
-  height: 100%;
+  min-height: 100%;
 }
 .iconfont {
   margin-right: 10px;

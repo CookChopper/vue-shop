@@ -7,10 +7,18 @@ body,
   min-width: 1366px;
 }
 
+.el-main {
+  overflow-y: hidden;
+}
+
 .el-menu {
   border-right: 0;
 }
 
 .el-breadcrumb {
   font-size: 12px;
+}
+
+.el-card {
+  /* height: 100%; */
 }

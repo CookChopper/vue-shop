@@ -61,9 +61,16 @@
                        size="mini"
                        icon="el-icon-delete"
                        @click="deleteUser(scope.row.id)"></el-button>
-            <el-button type="warning"
-                       size="mini"
-                       icon="el-icon-setting"></el-button>
+            <el-tooltip class="item"
+                        effect="dark"
+                        content="分配权限"
+                        placement="top"
+                        :enterable='false'>
+              <el-button type="warning"
+                         size="mini"
+                         icon="el-icon-setting"
+                         @click="showRoleDialog(scope.row)"></el-button>
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
@@ -136,6 +143,40 @@
                    @click="editUserInfo">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 分配角色 -->
+    <el-dialog title="分配角色"
+               :visible.sync="editRolesVisible"
+               width="50%"
+               @close="editRolesDialogClosed">
+      <el-form label-width="120px">
+        <el-form-item label="当前的用户:">
+          <el-input v-model="nowUser.username"
+                    :disabled="true">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="当前的角色:">
+          <el-input v-model="nowUser.role_name"
+                    :disabled="true">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="分配新角色:">
+          <el-select v-model="seletedRoleId"
+                     placeholder="请选择">
+            <el-option v-for="item in roleslist"
+                       :key="item.id"
+                       :label="item.roleName"
+                       :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <span slot="footer"
+            class="dialog-footer">
+        <el-button @click="editRolesVisible = false">取 消</el-button>
+        <el-button type="primary"
+                   @click="setRoles">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -189,7 +230,11 @@ export default {
       editUserFormRules: {
         email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }, { validator: checkemail, trigger: 'blur' }],
         mobile: [{ required: true, message: '请输入手机号', trigger: 'blur' }, { validator: checkPwd, trigger: 'blur' }]
-      }
+      },
+      editRolesVisible: false,
+      nowUser: {},
+      roleslist: [],
+      seletedRoleId: ''
     }
   },
   methods: {
@@ -275,6 +320,25 @@ export default {
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.$message.success(res.meta.msg)
       this.getUsersList()
+    },
+    async showRoleDialog (row) {
+      const { data: res } = await this.$http.get('roles')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.roleslist = res.data
+      this.nowUser = row
+      this.editRolesVisible = true
+    },
+    editRolesDialogClosed () {
+      this.seletedRoleId = ''
+    },
+    async setRoles () {
+      const { data: res } = await this.$http.put(`users/${this.nowUser.id}/role`, {
+        rid: this.seletedRoleId
+      })
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.$message.success(res.meta.msg)
+      this.getUsersList()
+      this.editRolesVisible = false
     }
   },
   created () {
