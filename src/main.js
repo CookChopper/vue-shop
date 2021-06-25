@@ -10,6 +10,9 @@ import './assets/css/global.css'
 import './assets/font/iconfont.css'
 // 导入axios
 import axios from 'axios'
+// 导入tree-table
+import TreeTable from 'tree-table-vue'
+
 axios.defaults.baseURL = 'http://47.115.152.84:8888/api/private/v1/'
 axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token')
@@ -17,6 +20,7 @@ axios.interceptors.request.use(config => {
 })
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
+Vue.use(TreeTable)
 
 new Vue({
   router,

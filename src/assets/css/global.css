@@ -21,4 +21,5 @@ body,
 
 .el-card {
   /* height: 100%; */
+  margin: 10px 0;
 }
