@@ -23,3 +23,7 @@ body,
   /* height: 100%; */
   margin: 10px 0;
 }
+
+.el-cascader-menu {
+  height: 300px !important;
+}
