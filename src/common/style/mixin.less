@@ -1,0 +1,68 @@
+@import "./base.less";
+
+@primary: #1baeae;
+@orange: #ff6b01;
+@bc: #f7f7f7;
+@fc: #fff;
+
+// 背景图片
+.bis(@url) {
+  background-image: url(@url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+// 圆角
+.borderRadius(@radius) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+}
+
+// 1px底部边框
+.border-1px(@color) {
+  position: relative;
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid @color;
+    content: "";
+  }
+}
+
+// 定位全屏
+.allcover {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+// 定位上下左右居中
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 宽高
+.wh(@width,@height) {
+  width: @width;
+  height: @height;
+}
+
+.boxSizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// flex布局
+.fl(@type:space-between) {
+  display: flex;
+  justify-content: @type;
+}
